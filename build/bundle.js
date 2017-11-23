@@ -176,15 +176,21 @@ var _Routes2 = _interopRequireDefault(_Routes);
 
 var _reactRouterDom = __webpack_require__(7);
 
+var _reactRedux = __webpack_require__(12);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (request, store) {
 	var content = (0, _server.renderToString)(_react2.default.createElement(
-		_reactRouterDom.StaticRouter,
-		{ location: request.path, context: {} },
-		_react2.default.createElement(_Routes2.default, null)
+		_reactRedux.Provider,
+		{ store: store },
+		_react2.default.createElement(
+			_reactRouterDom.StaticRouter,
+			{ location: request.path, context: {} },
+			_react2.default.createElement(_Routes2.default, null)
+		)
 	));
-	return '\n\t\t<html>\n\t\t\t<head></head>\n\t\t\t<body>\n\t\t\t\t<div id="root">' + content + '</div>\n\t\t\t\t<script src="bundle.js"></script>\n\t\t\t</body>\n\t\t</html>\n\t';
+	return "\n\t\t<html>\n\t\t\t<head></head>\n\t\t\t<body>\n\t\t\t\t<div id=\"root\">" + content + "</div>\n\t\t\t\t<script src=\"bundle.js\"></script>\n\t\t\t</body>\n\t\t</html>\n\t";
 };
 
 /***/ }),
@@ -227,6 +233,15 @@ exports.default = function () {
 			} })
 	);
 };
+
+/***/ }),
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
 
 /***/ })
 /******/ ]);

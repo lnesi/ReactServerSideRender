@@ -1,15 +1,16 @@
-import React from 'react';
-import {renderToString} from 'react-dom/server';
-import Routes from '../client/Routes';
-import { StaticRouter } from 'react-router-dom';
+import React from "react";
+import { renderToString } from "react-dom/server";
+import Routes from "../client/Routes";
+import { StaticRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
-
-
-export default (request,store)=>{
-	const content= renderToString(
-		<StaticRouter location={request.path} context={{}}>
-			<Routes />
-		</StaticRouter>
+export default (request, store) => {
+	const content = renderToString(
+		<Provider store={store}>
+			<StaticRouter location={request.path} context={{}}>
+				<Routes />
+			</StaticRouter>
+		</Provider>
 	);
 	return `
 		<html>
@@ -20,4 +21,4 @@ export default (request,store)=>{
 			</body>
 		</html>
 	`;
-}
+};
